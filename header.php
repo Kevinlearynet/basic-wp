@@ -9,7 +9,7 @@
 <body <?php body_class(); ?>>
 <header class="site-header" role="banner">
   <div class="container">
-    <a href="<?php echo site_url( '/' ); ?>" class="site-header__logo" aria-label="Link to OSAC Homepage">
+    <a href="<?php echo site_url( '/' ); ?>" class="site-header__logo" aria-label="Link to Homepage">
       <img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/logo.svg?v=3'; ?>" alt="BASIC SH*T">
     </a>
     <nav class="site-header__nav" role="navigation" aria-label="Main Navigation">
@@ -36,3 +36,4 @@
 </header>
 
 <main class="site-main">
+  <div class="container">
