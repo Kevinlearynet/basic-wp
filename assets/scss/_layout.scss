@@ -1,0 +1,19 @@
+/**
+ *  Body
+ */
+
+html,
+body {
+  background: white;
+}
+
+.container {
+  @include container(1200px);
+}
+
+.site-main {
+}
+
+.site-content > *:last-child {
+  margin-bottom: 0;
+}

@@ -1,0 +1,48 @@
+/**
+ * Library
+ */
+$sans-serif: "Decimal", sans-serif;
+
+// Mixins
+@mixin max($maxWidth) {
+  @media only screen and (max-width: $maxWidth) {
+    @content;
+  }
+}
+
+@mixin min($minWidth) {
+  @media only screen and (min-width: $minWidth) {
+    @content;
+  }
+}
+
+@mixin container($width: 1200px) {
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 40px;
+
+  @include min($width) {
+    width: $width;
+  }
+}
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    display: block;
+    clear: both;
+    height: 1px;
+    margin-top: -1px;
+    visibility: hidden;
+  }
+  & {
+    *zoom: 1;
+  }
+}
