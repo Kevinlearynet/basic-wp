@@ -27,7 +27,7 @@ Very simple custom WordPress theme without any frills.
   - cleanup.php
   - enqueue.php
   - helpers.php
-    - hooks.php
+  - hooks.php
 - 404.php
 - footer.php
 - front-page.php
