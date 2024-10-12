@@ -1,12 +1,13 @@
 <?php
 /**
- * Main Blog List
+ * Search results
  */
 get_header();
 
 if (have_posts()) {
   ?>
 <section>
+  <h1>Search results for &ldquo;<?php echo get_search_query(); ?>&rdquo;</h1>
   <?php while (have_posts()) {
     the_post(); ?>
   <article>
@@ -24,5 +25,6 @@ if (have_posts()) {
 </section>
 <?php } else { ?>
 <p>Sorry, no posts were found.</p>
+<?php get_search_form(); ?>
 <?php } ?>
 <?php get_footer();

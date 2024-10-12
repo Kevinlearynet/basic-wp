@@ -1,12 +1,15 @@
 <?php
 /**
- * Main Blog List
+ * Author List
+ *
+ * List of posts by author
  */
 get_header();
 
 if (have_posts()) {
   ?>
 <section>
+  <h1><?php echo get_the_author(); ?>'s Posts</h1>
   <?php while (have_posts()) {
     the_post(); ?>
   <article>

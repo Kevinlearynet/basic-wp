@@ -1,21 +1,11 @@
 <?php
 /**
- * Home.
+ * Home
  */
 get_header();
 the_post();
 ?>
-<section class="site-hero">
-  <div class="container">
-    <h1><?php the_title(); ?></h1>
-  </div>
-</section>
-
-<section class="site-content">
-  <div class="container">
-    <?php the_content(); ?>
-  </div>
-</section>
-
+<h1><?php the_title(); ?></h1>
+<article><?php the_content(); ?></article>
 <?php
 get_footer();

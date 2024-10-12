@@ -1,12 +1,15 @@
 <?php
 /**
- * Main Blog List
+ * Tag List
+ *
+ * For posts in specific tag
  */
 get_header();
 
 if (have_posts()) {
   ?>
 <section>
+  <h1>Posts Tagged: <?php single_tag_title(); ?></h1>
   <?php while (have_posts()) {
     the_post(); ?>
   <article>

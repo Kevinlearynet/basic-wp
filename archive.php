@@ -1,12 +1,15 @@
 <?php
 /**
- * Main Blog List
+ * Archive List
+ *
+ * For posts in category/tag/dates, unless tag.php or category.php exist
  */
 get_header();
 
 if (have_posts()) {
   ?>
 <section>
+  <h1><?php the_archive_title(); ?></h1>
   <?php while (have_posts()) {
     the_post(); ?>
   <article>

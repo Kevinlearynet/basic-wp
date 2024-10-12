@@ -1,6 +1,6 @@
 <?php
 /**
- * Single Posts
+ * Single Pages
  */
 get_header();
 the_post();
