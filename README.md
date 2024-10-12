@@ -2,7 +2,7 @@
 
 Very basic custom WordPress theme, for learning purposes. This includes very little, but shows a general structure that's good to understand when you're creating your first custom theme.
 
-This
+This accompanies a blog post found on kevinleary.net: [Simplest Guide to Custom WordPress Themes](https://www.kevinleary.net/blog/simplest-guide-to-custom-wordpress-themes/)
 
 ## Structure
 
