@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html {{ language_attributes }}>
+<head>
+  <title>{{ wp_title() }}</title>
+  <meta charset="{{ charset }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ wp_head() }}
+</head>
+<body class="{{ body_class() }}">
+{% include 'header.twig' %}
+<main>
+  {% block content %}
+  {% endblock %}
+</main>
+{% include 'footer.twig' %}
+</body>
+</html>

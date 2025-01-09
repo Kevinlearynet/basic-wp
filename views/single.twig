@@ -1,0 +1,9 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <article>
+        <h1>{{ post_title }}</h1>
+        <p><strong>Published on:</strong> {{ post_date }}</p>
+        <div>{{ post_content }}</div>
+    </article>
+{% endblock %}
