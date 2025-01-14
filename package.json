@@ -26,5 +26,8 @@
   "devDependencies": {
     "browser-sync": "^3.0.3",
     "sass": "^1.83.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
   }
 }

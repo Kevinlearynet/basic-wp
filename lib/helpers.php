@@ -5,7 +5,6 @@ namespace BasicWP;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
-use Twig\Markup;
 use Twig\TwigFunction;
 
 /**
@@ -36,8 +35,6 @@ function render_view($template, $context = []) {
   $twig->addGlobal('site_url', get_bloginfo('url'));
   $twig->addGlobal('theme_dir', get_stylesheet_directory());
   $twig->addGlobal('theme_url', get_stylesheet_directory_uri());
-  $twig->addGlobal('charset', new Markup(get_bloginfo('charset'), 'UTF-8'));
-  $twig->addGlobal('language_attributes', new Markup(get_language_attributes('html'), 'UTF-8'));
   $twig->addGlobal('primary_nav', wp_get_nav_menu_items('primary'));
 
   // ACF

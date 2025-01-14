@@ -2,13 +2,14 @@ const sass = require("sass");
 const fs = require("fs");
 const path = require("path");
 const browserSync = require("browser-sync").create();
+require("dotenv").config();
 
 // Theme root as working directory
 const cwd = path.resolve("../");
 
 // Initialize BrowserSync
 browserSync.init({
-  proxy: "https://basicshit.test",
+  proxy: process.env.LOCALHOST_URL,
   cors: true,
   cwd: cwd,
   logLevel: `warn`,
