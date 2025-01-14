@@ -1,6 +1,6 @@
-# Basic Custom WordPress Theme
+# Minimal WordPress Theme
 
-Very basic custom WordPress theme, for learning purposes. This includes very little, but shows a general structure that's good to understand when you're creating your first custom theme.
+Starting point for building custom WordPress themes that are lean and minimal, which has many advantages over working with a theme framework. It uses modern web development approaches and patterns, some of which are contrarian but have been proven to be highly effective in practice.
 
 ## Modern Features & Benefits
 
