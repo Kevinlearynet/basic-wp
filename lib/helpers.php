@@ -20,8 +20,9 @@ function render_view($template, $context = []) {
   $is_prod = (wp_get_environment_type() === 'production');
 
   $twig = new Environment($loader, [
-    'cache' => $is_prod ? WP_CONTENT_DIR . '/cache/twig' : false,
-    'debug' => !$is_prod,
+    'cache' => false,
+    'auto_reload' => true,
+    'debug' => true,
   ]);
 
   // Extensions
@@ -38,6 +39,12 @@ function render_view($template, $context = []) {
   $twig->addGlobal('charset', new Markup(get_bloginfo('charset'), 'UTF-8'));
   $twig->addGlobal('language_attributes', new Markup(get_language_attributes('html'), 'UTF-8'));
   $twig->addGlobal('primary_nav', wp_get_nav_menu_items('primary'));
+
+  // ACF
+  if (function_exists('get_fields')) {
+    $acf = get_fields();
+    $twig->addGlobal('acf', $acf);
+  }
 
   // Functions
   $twig->addFunction(new TwigFunction('the_title', function () {
@@ -63,10 +70,11 @@ function render_view($template, $context = []) {
   }, ['is_safe' => ['html']]));
 
   $twig->addFunction(new TwigFunction('wp_head', function ($sep = '&raquo;') {
-    ob_start();
     wp_head();
+  }, ['is_safe' => ['html']]));
 
-    return ob_get_clean();
+  $twig->addFunction(new TwigFunction('wp_footer', function ($sep = '&raquo;') {
+    wp_footer();
   }, ['is_safe' => ['html']]));
 
   $twig->addFunction(new TwigFunction('body_class', function ($css_class = '') {

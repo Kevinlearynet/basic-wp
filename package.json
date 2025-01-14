@@ -1,0 +1,30 @@
+{
+  "name": "basic-wp",
+  "version": "1.0.0",
+  "description": "Minimal custom WordPress theme with modern templating, a lightning fast build process, and no tom foolery.",
+  "scripts": {
+    "watch": "node bin/.watch.js",
+    "build": "node bin/.build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kevinlearynet/basic-wp.git"
+  },
+  "keywords": [
+    "wordpress",
+    "minimal",
+    "basic",
+    "custom",
+    "theme"
+  ],
+  "author": "Kevin Leary <info@kevinleary.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kevinlearynet/basic-wp/issues"
+  },
+  "homepage": "https://github.com/Kevinlearynet/basic-wp#readme",
+  "devDependencies": {
+    "browser-sync": "^3.0.3",
+    "sass": "^1.83.1"
+  }
+}

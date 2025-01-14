@@ -1,6 +1,32 @@
 <header class="site-header">
-    <a href="{{ site_url }}"><img src="" alt="kevinleary.net" /></a>
+    <a href="{{ site_url }}" class="site-header__logo">
+        <img src="{{ theme_url }}/static/img/logo.svg" alt="kevinleary.net" />
+    </a>
     {% if primary_nav %}
-    <nav>{{ primary_nav }}</nav>
+        <nav class="site-header__nav">
+            <ul class="site-header__nav-list">
+                {% for item in primary_nav %}
+                    {% if item.menu_item_parent == "0" %}
+                        <li class="site-header__nav-item {{ item.classes|join(' ') }}">
+                            <a href="{{ item.url }}" class="site-header__nav-link">
+                                {{ item.title }}
+                            </a>
+                            {% set child_items = primary_nav|filter(child => child.menu_item_parent == item.db_id) %}
+                            {% if child_items|length > 0 %}
+                                <ul class="site-header__nav-submenu">
+                                    {% for child in child_items %}
+                                        <li class="site-header__nav-submenu-item {{ child.classes|join(' ') }}">
+                                            <a href="{{ child.url }}" class="site-header__nav-submenu-link">
+                                                {{ child.title }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
     {% endif %}
 </header>

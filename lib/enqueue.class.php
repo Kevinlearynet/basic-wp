@@ -26,7 +26,20 @@ class Enqueue {
     }
 
     // JS
-    $js_path = '/static/dist/theme.js';
+    $dependencies = [ [
+      'id' => 'jquery',
+      'import' => 'static',
+    ], [
+      'id' => 'module-1',
+      'import' => 'dynamic',
+    ], [
+      'id' => 'module-2',
+      'import' => 'dynamic',
+    ], [
+      'id' => 'module-3',
+      'import' => 'dynamic',
+    ] ];
+    $js_path = '/static/js/theme.js';
     if (file_exists($theme_dir . $js_path)) {
       $version = filemtime($theme_dir . $js_path);
       wp_enqueue_script('basicwp-theme-js', $theme_uri . $js_path, ['jquery'], $version, true);
