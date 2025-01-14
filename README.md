@@ -2,10 +2,11 @@
 
 Starting point for building custom WordPress themes that are lean and minimal, which has many advantages over working with a theme framework. It uses modern web development approaches and patterns, some of which are contrarian but have been proven to be highly effective in practice.
 
-## Modern Features & Benefits
+## Modern Features
 
 - SASS + BEM pattern styling
 - Native ES modules
+- Composer package management
 - Twig view templating
 - View/controller pattern
 - Namespaced PHP for isolation
