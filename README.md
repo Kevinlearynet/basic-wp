@@ -4,6 +4,7 @@ Starting point for building custom WordPress themes that are lean and minimal, w
 
 ## Modern Features
 
+- Watch that compiles and reloads in under 100ms
 - SASS + BEM pattern styling
 - Native ES modules
 - Composer package management
