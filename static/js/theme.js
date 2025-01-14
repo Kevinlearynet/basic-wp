@@ -1,4 +1,4 @@
 /**
  * Theme JS
  */
-alert(`theme.js loaded. 4`);
+console.log(`theme.js loaded.`);
