@@ -55,33 +55,6 @@ function render_view($template, $context = []) {
     return ob_get_clean();
   }, ['is_safe' => ['html']]));
 
-  $twig->addFunction(new TwigFunction('get_header', function ($input) {
-    ob_start();
-    get_header();
-
-    return ob_get_clean();
-  }, ['is_safe' => ['html']]));
-
-  $twig->addFunction(new TwigFunction('wp_title', function ($sep = '&raquo;') {
-    return wp_title($sep, false);
-  }, ['is_safe' => ['html']]));
-
-  $twig->addFunction(new TwigFunction('wp_head', function ($sep = '&raquo;') {
-    wp_head();
-  }, ['is_safe' => ['html']]));
-
-  $twig->addFunction(new TwigFunction('wp_footer', function ($sep = '&raquo;') {
-    wp_footer();
-  }, ['is_safe' => ['html']]));
-
-  $twig->addFunction(new TwigFunction('body_class', function ($css_class = '') {
-    $body_class = get_body_class($css_class);
-
-    remove_from_array('no-customize-support', $body_class);
-
-    return implode(' ', $body_class);
-  }, ['is_safe' => ['html']]));
-
   // Load view and render
   if (!str_ends_with($template, '.twig')) {
     $template .= '.twig';

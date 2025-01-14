@@ -9,8 +9,10 @@ Very basic custom WordPress theme, for learning purposes. This includes very lit
 - Twig view templating
 - View/controller pattern
 - Namespaced PHP for isolation
-- Built-in support for ACF
-- Includes standard global context variables for common WordPress data: `site_url`, `site_description`, `site_url`, `theme_dir`, `theme_url`, `primary_nav`
+- Built-in support for ACF:
+- Global context variables for common WordPress data: `site_url`, `site_description`, `site_url`, `theme_dir`, `theme_url`, `primary_nav`, `acf`, `the_title()`, `the_content()`
+
+View context is deliberately kept sparse, during a site build you'll add what you specifically need for a particular site. Having a lean context for your views will help with both performance and workflow.
 
 ## Install & Setup
 
