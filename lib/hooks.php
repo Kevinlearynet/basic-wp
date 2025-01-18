@@ -14,6 +14,17 @@ function after_setup_theme() {
 add_action('after_setup_theme', __NAMESPACE__ . '\\after_setup_theme');
 
 /**
+ * Basic SEO
+ *
+ * {Site URL}: {Title}
+ */
+add_filter('wp_title', function ($title) {
+  $site_name = get_bloginfo('name');
+
+  return "{$site_name}: {$title}";
+});
+
+/**
  * Disable Emoji's
  */
 function init() {

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Minimal custom WordPress theme with modern templating, a lightning fast build process, and no tom foolery.",
   "scripts": {
+    "start": "npm run watch",
     "watch": "node bin/.watch.js",
     "build": "node bin/.build.js"
   },
