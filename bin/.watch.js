@@ -48,7 +48,7 @@ browserSync.watch("static/js/*.js", (event, file) => {
 });
 
 // Compile *.scss to *.css
-browserSync.watch("static/css/*.scss", (event, file) => {
+browserSync.watch("static/scss/*.scss", (event, file) => {
   if (event !== "change") return;
   scssToCSS();
   browserSync.reload("*.js");

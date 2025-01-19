@@ -4,7 +4,7 @@
 const sass = require("sass");
 const fs = require("fs");
 const path = require("path");
-const scssDir = path.resolve(`static/css`);
+const scssDir = path.resolve(`static/scss`);
 const distDir = path.resolve(`static/dist`);
 require("dotenv").config();
 
@@ -42,7 +42,7 @@ module.exports.generateImportmap = () => {
 // Compile SASS
 module.exports.scssToCSS = () => {
   try {
-    // Read all /static/css/*.scss files, ignoring any beginning with _
+    // Read all /static/scss/*.scss files, ignoring any beginning with _
     const scssFiles = fs.readdirSync(scssDir).filter((file) => file.endsWith(".scss") && !file.startsWith("_"));
     scssFiles.forEach((scssFile) => {
       const start = performance.now();
@@ -57,7 +57,7 @@ module.exports.scssToCSS = () => {
           },
         },
       });
-      const cssFile = `${scssDir}/${scssFile}`.replace(".scss", ".css");
+      const cssFile = `${distDir}/${scssFile}`.replace(".scss", ".css");
       fs.writeFileSync(cssFile, result.css);
       const end = performance.now();
       const runtime = (end - start).toFixed(3);
