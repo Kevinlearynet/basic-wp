@@ -6,6 +6,12 @@ html {
 }
 
 main {
-  padding: 30px;
+  padding: 60px 30px;
   background-color: #f0f0f0;
+}
+
+.container {
+  width: 1280px;
+  max-width: 100%;
+  margin: 0 auto;
 }

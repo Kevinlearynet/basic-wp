@@ -9,6 +9,7 @@ function after_setup_theme() {
   add_theme_support('title-tag');
   add_theme_support('menus');
   add_theme_support('editor-styles');
+  add_theme_support('post-thumbnails');
   remove_theme_support('customize-selective-refresh-widgets');
 }
 add_action('after_setup_theme', __NAMESPACE__ . '\\after_setup_theme');
@@ -22,6 +23,13 @@ add_filter('wp_title', function ($title) {
   $site_name = get_bloginfo('name');
 
   return "{$site_name}: {$title}";
+});
+
+/**
+ * Excerpt
+ */
+add_filter('excerpt_more', function () {
+  return '&hellip;';
 });
 
 /**
