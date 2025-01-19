@@ -20,8 +20,8 @@ browserSync.init({
   ghostMode: false,
   reloadOnRestart: true,
   notify: false,
+  watch: true,
   cors: true,
-  files: ["dist/*.css", "views/*.twig", "lib/*.php", "*.php"],
 });
 
 // Generate  importmap's for JS modules
@@ -29,16 +29,16 @@ browserSync.watch("package-lock.json", (event, file) => {
   if (event !== "change") return;
 
   generateImportmap();
-  browserSync.reload("*.js");
+  browserSync.reload();
 });
 
 // Reload JS during development
-browserSync.watch("static/js/*.js", (event, file) => {
+browserSync.watch(`static/js/*.js`, (event, file) => {
   if (event !== "change") return;
 
   const start = performance.now();
   try {
-    browserSync.reload("*.js");
+    browserSync.stream();
     const end = performance.now();
     const runtime = (end - start).toFixed(3);
     console.log(`JS re-injected successfully in ${runtime}ms`);
@@ -51,5 +51,12 @@ browserSync.watch("static/js/*.js", (event, file) => {
 browserSync.watch("static/scss/*.scss", (event, file) => {
   if (event !== "change") return;
   scssToCSS();
-  browserSync.reload("*.js");
+});
+
+// Reload on *.php and *.twig changes
+browserSync.watch(["views/**/*.twig", "./**/*.php"], (event, file) => {
+  if (event !== "change") return;
+  const base = path.basename(file);
+  console.log(`Reloading entire page for change to ${base}`);
+  browserSync.reload();
 });

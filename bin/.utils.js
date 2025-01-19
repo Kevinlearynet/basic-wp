@@ -6,7 +6,10 @@ const fs = require("fs");
 const path = require("path");
 const scssDir = path.resolve(`static/scss`);
 const distDir = path.resolve(`static/dist`);
+const debounce = require("lodash.debounce");
+
 require("dotenv").config();
+const scssFiles = fs.readdirSync(scssDir).filter((file) => file.endsWith(".scss") && !file.startsWith("_"));
 
 // Generate /static/dist/importmap.json
 module.exports.generateImportmap = () => {
@@ -15,9 +18,7 @@ module.exports.generateImportmap = () => {
     const json = require("../package-lock.json");
 
     const importmap = {
-      imports: {
-        "": `${process.env.THEME_PATH}/static/js`,
-      },
+      imports: {},
     };
 
     for (const dir in json.packages) {
@@ -40,10 +41,9 @@ module.exports.generateImportmap = () => {
 };
 
 // Compile SASS
-module.exports.scssToCSS = () => {
+module.exports.scssToCSS = debounce(() => {
   try {
     // Read all /static/scss/*.scss files, ignoring any beginning with _
-    const scssFiles = fs.readdirSync(scssDir).filter((file) => file.endsWith(".scss") && !file.startsWith("_"));
     scssFiles.forEach((scssFile) => {
       const start = performance.now();
       const basename = path.basename(scssFile);
@@ -67,4 +67,4 @@ module.exports.scssToCSS = () => {
   } catch (error) {
     console.log(`Error compiling SASS to CSS:`, error);
   }
-};
+}, 50);
