@@ -1,5 +1,4 @@
-$sans-serif: "Schibsted Grotesk", sans-serif;
-$mono-font: "Office Code Pro", Monaco, Consolas, monospace !default;
+$sans-serif: "Hanken Grotesk", sans-serif;
 $base-font-size: 1rem !default;
 $base-line-height: 1.6 !default;
 
@@ -116,7 +115,7 @@ pre,
 code,
 samp,
 style {
-  font-family: $mono-font;
+  font-family: monospace;
 }
 
 pre {
