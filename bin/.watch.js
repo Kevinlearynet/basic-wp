@@ -1,8 +1,9 @@
-const sass = require("sass");
+require("dotenv").config();
+
 const fs = require("fs");
 const path = require("path");
 const browserSync = require("browser-sync").create();
-require("dotenv").config();
+const { generateImportmap, scssToCSS } = require(`./.utils`);
 
 // Theme root as working directory
 const cwd = path.resolve("../");
@@ -14,14 +15,24 @@ browserSync.init({
   cwd: cwd,
   logLevel: `warn`,
   minify: false,
-  open: "local",
+  open: false,
   ui: false,
+  ghostMode: false,
   reloadOnRestart: true,
   notify: false,
+  cors: true,
   files: ["dist/*.css", "views/*.twig", "lib/*.php", "*.php"],
 });
 
-// Reload JS
+// Generate  importmap's for JS modules
+browserSync.watch("package-lock.json", (event, file) => {
+  if (event !== "change") return;
+
+  generateImportmap();
+  browserSync.reload("*.js");
+});
+
+// Reload JS during development
 browserSync.watch("static/js/*.js", (event, file) => {
   if (event !== "change") return;
 
@@ -29,8 +40,8 @@ browserSync.watch("static/js/*.js", (event, file) => {
   try {
     browserSync.reload("*.js");
     const end = performance.now();
-    const timer = Math.round(end - start, 3);
-    console.log(`JS re-injected successfully in ${timer}ms`);
+    const runtime = (end - start).toFixed(3);
+    console.log(`JS re-injected successfully in ${runtime}ms`);
   } catch (error) {
     console.log("Error compiling JS:", error);
   }
@@ -39,24 +50,6 @@ browserSync.watch("static/js/*.js", (event, file) => {
 // Compile *.scss to *.css
 browserSync.watch("static/css/*.scss", (event, file) => {
   if (event !== "change") return;
-
-  const start = performance.now();
-  try {
-    const result = sass.compile("static/css/theme.scss", {
-      style: "compressed",
-      sourceMap: true,
-      logger: {
-        warn(message, options) {
-          if (message.includes(`deprecated`)) return;
-          console.log(message);
-        },
-      },
-    });
-    fs.writeFileSync("static/dist/theme.css", result.css);
-    browserSync.reload("*.css");
-    const end = performance.now();
-    console.log(`Sass compiled successfully in ${end - start}ms`);
-  } catch (error) {
-    console.log("Error compiling Sass:", error);
-  }
+  scssToCSS();
+  browserSync.reload("*.js");
 });

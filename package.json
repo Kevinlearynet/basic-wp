@@ -1,6 +1,6 @@
 {
   "name": "basic-wp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Minimal custom WordPress theme with modern templating, a lightning fast build process, and no tom foolery.",
   "scripts": {
     "start": "npm run watch",
@@ -26,9 +26,10 @@
   "homepage": "https://github.com/Kevinlearynet/basic-wp#readme",
   "devDependencies": {
     "browser-sync": "^3.0.3",
+    "dotenv": "^16.4.7",
     "sass": "^1.83.1"
   },
   "dependencies": {
-    "dotenv": "^16.4.7"
+    "lodash": "^4.17.21"
   }
 }

@@ -9,6 +9,17 @@ class Enqueue {
   public function __construct() {
     add_action('wp_enqueue_scripts', [$this, 'enqueue_frontend_assets']);
     add_action('admin_enqueue_scripts', [$this, 'enqueue_backend_assets']);
+    add_action('wp_head', [$this, 'importmap'], 0);
+  }
+
+  public function importmap() {
+    $importmap = file_get_contents(get_stylesheet_directory() . '/static/dist/importmap.json');
+    $importmap = json_encode(json_decode($importmap));
+    ?>
+    <script type="importmap">
+    <?php echo $importmap; ?>
+    </script>
+    <?php
   }
 
   /**
