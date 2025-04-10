@@ -5,6 +5,7 @@ namespace BasicWP;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
+use Twig\Markup;
 use Twig\TwigFunction;
 
 /**
@@ -14,6 +15,8 @@ use Twig\TwigFunction;
  * @param array  $context  context variables to pass to the Twig template
  */
 function render_view($template, $context = []) {
+  global $post;
+
   $views_dir = get_stylesheet_directory() . '/views';
   $loader = new FilesystemLoader($views_dir);
   $is_prod = (wp_get_environment_type() === 'production');
@@ -36,6 +39,26 @@ function render_view($template, $context = []) {
   $twig->addGlobal('theme_dir', get_stylesheet_directory());
   $twig->addGlobal('theme_url', get_stylesheet_directory_uri());
   $twig->addGlobal('primary_nav', wp_get_nav_menu_items('primary'));
+
+  $title = is_singular() ? get_the_title() : get_the_archive_title();
+  if ($title) {
+    $twig->addGlobal('title', $title);
+  }
+
+  $thumbnail = get_the_post_thumbnail('full');
+  if ($thumbnail) {
+    $twig->addGlobal('thumbnail', $thumbnail);
+  }
+
+  $content = get_the_content();
+  if ($content) {
+    $twig->addGlobal('content', new Markup(apply_filters('the_content', $content), 'UTF-8'));
+  }
+
+  $date = get_the_date();
+  if ($date) {
+    $twig->addGlobal('date', $date);
+  }
 
   // ACF
   if (function_exists('get_fields')) {
