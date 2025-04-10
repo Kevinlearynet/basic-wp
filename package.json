@@ -27,6 +27,7 @@
   "devDependencies": {
     "browser-sync": "^3.0.3",
     "dotenv": "^16.4.7",
+    "lodash.debounce": "^4.0.8",
     "sass": "^1.83.1"
   },
   "dependencies": {
